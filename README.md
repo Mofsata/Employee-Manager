@@ -5,7 +5,7 @@ This API function as system where you can manage the information of your employe
 
 The Information is stored on a SQLite database table, and the parameters of each row are [Id, Name, Job Title, Age, Salary].
 
-And the operations you can do with this API are defined in these HTTP request:
+And the operations you can do with this API are defined in these HTTP requests:
 
 ## HTTP Requests
 
