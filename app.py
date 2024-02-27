@@ -32,7 +32,7 @@ def GetPostMethod() :
         ]
         if Employees is not None : return jsonify(Employees)
 
-    # get request from body (raw)
+    # POST request require the JSON object in the body (raw)
     if request.method == 'POST' :
         content = request.get_json(force=True)
         EmpName = content["Name"]
@@ -46,6 +46,7 @@ def GetPostMethod() :
         
         return f"Employee with the id : {cr.lastrowid} created successfully" 
     
+# Requests that require a path variable
 @app.route("/<int:id>" , methods = ['GET' , 'PUT' , 'DELETE'])
 def IdMethods(id) :
 
@@ -67,7 +68,7 @@ def IdMethods(id) :
 
         sql_update = """update Employees Set Name = ? , JobTitle = ? , Age = ? , Salary = ? where Id = ? """
 
-        # Get request from form
+        # POST request requires the parameters needed to be added in the form
         EmpName = request.form["Name"]
         EmpJobTitle = request.form["JobTitle"]
         EmpAge = int(request.form["Age"])
@@ -87,7 +88,7 @@ def IdMethods(id) :
         sql_delete = """delete from Employees where Id = ? """
         cr.execute(sql_delete , (id,))
         db.commit()
-        return f"the book with id = {id} has been deleted"
+        return f"The Employee with id = {id} has been deleted"
 
 
 if __name__ == "__main__" :
